@@ -64,7 +64,6 @@ function ShortenUrl() {
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
     const apiCall = async (): Promise<ShortenedUrlResponse> => {
-      console.log(JSON.stringify({ url: normalizedUrl }));
       const res = await fetch(`${baseUrl}/url`, {
         method: 'POST',
         headers: {
