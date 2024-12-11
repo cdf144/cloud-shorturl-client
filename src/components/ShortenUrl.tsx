@@ -61,10 +61,11 @@ function ShortenUrl() {
     setLoading(true);
     setError('');
 
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    const apiEndpoint = import.meta.env.VITE_API_ENDPOINT;
+    const apiUrlResource = new URL('/url', apiEndpoint).toString();
 
     const apiCall = async (): Promise<ShortenedUrlResponse> => {
-      const res = await fetch(`${baseUrl}/url`, {
+      const res = await fetch(apiUrlResource, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +96,7 @@ function ShortenUrl() {
           'a',
         )! as HTMLAnchorElement;
         link.href = data.original;
-        link.textContent = `${baseUrl}/url/${data.code}`;
+        link.textContent = `${apiUrlResource}/${data.code}`;
         link.target = '_blank'; // Open the link in a new tab
 
         shortenedLinkContainer.appendChild(link);
