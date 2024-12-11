@@ -159,7 +159,7 @@ function ShortenUrl() {
       <div className="mx-auto my-4 max-w-3xl flex">
         <div
           id="shortened"
-          className="mx-4 my-auto h-12 p-4 grow hover:grow-[2] rounded-lg border-2 border-gray-400/50 outline-none hover:border-[#646cff]/65 hover:shadow-sm focus:border-[#646cff] transition-all duration-300 font-medium flex items-center overflow-x-auto overflow-y-hidden"
+          className="mx-4 my-auto h-12 p-4 grow hover:grow-[2] rounded-lg border-2 border-gray-400/50 outline-none hover:border-[#646cff]/65 hover:shadow-sm focus:border-[#646cff] transition-all duration-300 font-medium flex items-center whitespace-nowrap overflow-y-hidden"
         >
           <span className="mr-2">
             <strong>Shortened URL:</strong>
@@ -168,7 +168,7 @@ function ShortenUrl() {
         </div>
         <div
           id="shortened-code"
-          className="mx-4 my-auto h-12 p-4 grow rounded-lg border-2 border-gray-400/50 outline-none hover:border-[#646cff]/65 hover:shadow-sm focus:border-[#646cff] transition-all duration-300 font-medium flex items-center overflow-x-auto overflow-y-hidden"
+          className="mx-4 my-auto h-12 p-4 grow rounded-lg border-2 border-gray-400/50 outline-none hover:border-[#646cff]/65 hover:shadow-sm focus:border-[#646cff] transition-all duration-300 font-medium flex items-center whitespace-nowrap overflow-y-hidden"
         >
           <span className="mr-2">
             <strong>Code:</strong>
