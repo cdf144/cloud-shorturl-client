@@ -1,50 +1,39 @@
-# React + TypeScript + Vite
+# Cloud URL Shortener Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This simple front-end was created using the Vite + TypeScript + SWC template.
 
-Currently, two official plugins are available:
+## Configure & Run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository contains a `.env` file with the envvar `VITE_API_ENDPOINT` which defines the URL Shortener API endpoint the application will `fetch` from, and must be configured before running the app.
 
-## Expanding the ESLint configuration
+For example, to make `https://1234567890.execute-api.us-east-1.amazonaws.com/prod/` the API endpoint, there are 2 ways:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- _(Recommended)_ Set the envvar in the running environment, this will override any envvars defined in a `.env` file. For example, passing envvar to an ECS container:
 
-- Configure the top-level `parserOptions` property like this:
+  ```json
+  {
+    "containerDefinitions": [
+      {
+        "environment": [
+          {
+            "VITE_API_ENDPOINT": "https://1234567890.execute-api.us-east-1.amazonaws.com/prod/"
+          }
+        ]
+      }
+    ]
+  }
+  ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Edit the envvar in `.env`
+
+  ```ini
+  VITE_API_ENDPOINT="https://1234567890.execute-api.us-east-1.amazonaws.com/prod/"
+  ```
+
+After that, run the application with:
+
+```sh
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Alternatively, bundle (build) the application with `npm run build`, then serve the files inside the `dist/` directory using an HTTP server.
