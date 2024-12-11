@@ -61,8 +61,10 @@ function ShortenUrl() {
     setLoading(true);
     setError('');
 
-    const apiEndpoint = import.meta.env.VITE_API_ENDPOINT;
-    const apiUrlResource = new URL('/url', apiEndpoint).toString();
+    let apiEndpoint = import.meta.env.VITE_API_ENDPOINT;
+    // When endpoint doesn't end with a slash, using URL constructor replaces the base path instead of appending to it
+    apiEndpoint = apiEndpoint.endsWith('/') ? apiEndpoint : apiEndpoint + '/';
+    const apiUrlResource = new URL('url', apiEndpoint).toString();
 
     const apiCall = async (): Promise<ShortenedUrlResponse> => {
       const res = await fetch(apiUrlResource, {
